@@ -763,6 +763,7 @@ public final class Registration {
         Upgrades.INVERTER.registerItem(parts.storageBus(), 1);
         Upgrades.CAPACITY.registerItem(parts.storageBus(), 5);
         Upgrades.ORE_FILTER.registerItem(parts.storageBus(), 1);
+        Upgrades.RECIPE_FILTER.registerItem(parts.storageBus(), 1);
         Upgrades.STICKY.registerItem(parts.storageBus(), 1);
 
         // Formation Plane
