@@ -174,8 +174,8 @@ public class GuiStorageBus extends GuiUpgradeable {
     @Override
     public void drawBG(int offsetX, int offsetY, int mouseX, int mouseY) {
         super.drawBG(offsetX, offsetY, mouseX, mouseY);
-        final boolean isRecipeFilter = this.containerStorageBus.getUpgradeable().getInstalledUpgrades(Upgrades.RECIPE_FILTER)
-                > 0;
+        final boolean isRecipeFilter = this.containerStorageBus.getUpgradeable()
+                .getInstalledUpgrades(Upgrades.RECIPE_FILTER) > 0;
         if (isRecipeFilter) {
             // Gray out all but the first slot
             final int SLOT_WIDTH = 18;
@@ -258,8 +258,8 @@ public class GuiStorageBus extends GuiUpgradeable {
     }
 
     protected void updateSlotVisibility() {
-        final boolean isRecipeFilter = this.containerStorageBus.getUpgradeable().getInstalledUpgrades(Upgrades.RECIPE_FILTER)
-                > 0;
+        final boolean isRecipeFilter = this.containerStorageBus.getUpgradeable()
+                .getInstalledUpgrades(Upgrades.RECIPE_FILTER) > 0;
         if (isRecipeFilter) {
             // Exactly 1 slot for the GT machine to filter recipes by
             for (VirtualMEPhantomSlot slot : this.configSlots) {

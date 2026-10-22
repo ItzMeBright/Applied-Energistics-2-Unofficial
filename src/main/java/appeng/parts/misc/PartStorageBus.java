@@ -23,7 +23,6 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import appeng.util.prioitylist.RecipeFilterList;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -94,6 +93,7 @@ import appeng.util.Platform;
 import appeng.util.prioitylist.FuzzyPriorityList;
 import appeng.util.prioitylist.OreFilteredList;
 import appeng.util.prioitylist.PrecisePriorityList;
+import appeng.util.prioitylist.RecipeFilterList;
 import buildcraft.api.transport.IPipeTile.PipeType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -691,7 +691,7 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
                     final boolean hasOreFilter = this.getInstalledUpgrades(Upgrades.ORE_FILTER) > 0;
                     final boolean hasRecipeFilter = this.getInstalledUpgrades(Upgrades.RECIPE_FILTER) > 0;
 
-                     if (hasRecipeFilter) {
+                    if (hasRecipeFilter) {
                         IAEStack<?> selectedMachine = this.config.getAEStackInSlot(0);
                         if (selectedMachine != null) {
                             RecipeFilterList partitionList = new RecipeFilterList(selectedMachine);
@@ -732,7 +732,7 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
                         }
                     }
 
-                    if (inv instanceof IMEMonitor<?> m) {
+                    if (inv instanceof IMEMonitor<?>m) {
                         m.addListener(this, this.handler);
                     }
                 }

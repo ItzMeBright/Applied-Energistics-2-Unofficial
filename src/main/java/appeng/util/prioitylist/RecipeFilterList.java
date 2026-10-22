@@ -1,11 +1,12 @@
 package appeng.util.prioitylist;
 
+import net.minecraft.item.ItemStack;
+
 import appeng.api.storage.data.IAEItemStack;
 import appeng.api.storage.data.IAEStack;
 import appeng.integration.IntegrationRegistry;
 import appeng.integration.IntegrationType;
 import appeng.integration.abstraction.IGT;
-import net.minecraft.item.ItemStack;
 
 public class RecipeFilterList implements IPartitionList<IAEItemStack> {
 

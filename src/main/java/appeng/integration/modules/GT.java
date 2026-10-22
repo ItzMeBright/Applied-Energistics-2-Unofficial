@@ -1,9 +1,5 @@
 package appeng.integration.modules;
 
-import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
-import gregtech.api.interfaces.tileentity.RecipeMapWorkable;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.common.blocks.ItemMachines;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -19,8 +15,12 @@ import appeng.integration.IntegrationType;
 import appeng.integration.abstraction.IGT;
 import appeng.spatial.NBTSpatialHandler;
 import cpw.mods.fml.common.Loader;
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.interfaces.tileentity.RecipeMapWorkable;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.ColoredBlockContainer;
+import gregtech.common.blocks.ItemMachines;
 
 public class GT implements IIntegrationModule, IGT {
 
