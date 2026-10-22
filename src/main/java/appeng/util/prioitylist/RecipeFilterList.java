@@ -25,7 +25,7 @@ public class RecipeFilterList implements IPartitionList<IAEItemStack> {
 
     @Override
     public boolean isEmpty() {
-        if (gt == null || selectedMachine == null) return false;
+        if (gt == null || selectedMachine == null) return true;
         return gt.isRecipeMapEmpty(selectedMachine);
     }
 
