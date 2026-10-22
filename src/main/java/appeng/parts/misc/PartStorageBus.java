@@ -23,8 +23,6 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import appeng.util.prioitylist.IPartitionList;
-import appeng.util.prioitylist.OreDictRecipeFilterList;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -93,6 +91,7 @@ import appeng.transformer.annotations.Integration.Method;
 import appeng.util.IterationCounter;
 import appeng.util.Platform;
 import appeng.util.prioitylist.FuzzyPriorityList;
+import appeng.util.prioitylist.OreDictRecipeFilterList;
 import appeng.util.prioitylist.OreFilteredList;
 import appeng.util.prioitylist.PrecisePriorityList;
 import appeng.util.prioitylist.RecipeFilterList;
@@ -695,7 +694,9 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
 
                     if (hasRecipeFilter && hasOreFilter) {
                         IAEStack<?> selectedMachine = this.config.getAEStackInSlot(0);
-                        OreDictRecipeFilterList partitionList = new OreDictRecipeFilterList(oreFilterString, selectedMachine);
+                        OreDictRecipeFilterList partitionList = new OreDictRecipeFilterList(
+                                oreFilterString,
+                                selectedMachine);
                         this.handler.setPartitionList(partitionList);
                         this.handler.setExtractPartitionList(partitionList);
                     } else if (hasRecipeFilter) {

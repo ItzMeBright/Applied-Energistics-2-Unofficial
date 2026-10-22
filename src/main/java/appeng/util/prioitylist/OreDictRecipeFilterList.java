@@ -8,10 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
-import appeng.api.storage.data.IAEStack;
-import appeng.integration.IntegrationRegistry;
-import appeng.integration.IntegrationType;
-import appeng.integration.abstraction.IGT;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -19,13 +15,15 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.StringUtils;
 
 import appeng.api.storage.data.IAEItemStack;
+import appeng.api.storage.data.IAEStack;
 import appeng.core.AELog;
-import codechicken.nei.FormattedTextField.TextFormatter;
-import cpw.mods.fml.common.Optional;
+import appeng.integration.IntegrationRegistry;
+import appeng.integration.IntegrationType;
+import appeng.integration.abstraction.IGT;
 
 /*
- * The Ore Dictionary filter portion of this class was adopted from appeng.util.prioitylist.OreFilteredList.
- * Credits for the Ore Dictionary filter logic goes to their authors.
+ * The Ore Dictionary filter portion of this class was adopted from appeng.util.prioitylist.OreFilteredList. Credits for
+ * the Ore Dictionary filter logic goes to their authors.
  */
 public class OreDictRecipeFilterList implements IPartitionList<IAEItemStack> {
 
