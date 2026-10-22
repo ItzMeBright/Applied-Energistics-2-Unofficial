@@ -1,6 +1,11 @@
 package appeng.integration.modules;
 
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
+import gregtech.api.interfaces.tileentity.RecipeMapWorkable;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.common.blocks.ItemMachines;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -46,6 +51,19 @@ public class GT implements IIntegrationModule, IGT {
     @Override
     public boolean isGTMachine(TileEntity te) {
         return te instanceof IGregTechTileEntity;
+    }
+
+    @Override
+    public IMetaTileEntity asGTTileEntity(ItemStack itemStack) {
+        return ItemMachines.getMetaTileEntity(itemStack);
+    }
+
+    @Override
+    public RecipeMap<?> getRecipeMap(IMetaTileEntity metaTileEntity) {
+        if (metaTileEntity instanceof RecipeMapWorkable recipeMapWorkable) {
+            return recipeMapWorkable.getRecipeMap();
+        }
+        return null;
     }
 
     @Override

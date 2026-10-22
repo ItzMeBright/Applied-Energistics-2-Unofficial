@@ -10,13 +10,20 @@
 
 package appeng.integration.abstraction;
 
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
+import gregtech.api.recipe.RecipeMap;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public interface IGT {
 
     boolean isGTMachine(TileEntity te);
+
+    IMetaTileEntity asGTTileEntity(ItemStack itemStack);
+
+    RecipeMap<?> getRecipeMap(IMetaTileEntity metaTileEntity);
 
     int getGTMachineHash(TileEntity te);
 
