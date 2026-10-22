@@ -31,13 +31,13 @@ public class OreDictRecipeFilterList implements IPartitionList<IAEItemStack> {
 
     private static final Pattern BOOLEAN_OPERAND_PATTERN = Pattern.compile("[^&|]+");
     private final IGT gt = IntegrationRegistry.INSTANCE.getInstanceIfEnabled(IntegrationType.GT);
-    private final ItemStack selectedMachine;
+    private ItemStack selectedMachine = null;
 
     private final Predicate<IAEItemStack> filterPredicate;
 
     public OreDictRecipeFilterList(String filter, IAEStack<?> selectedMachine) {
         filterPredicate = makeFilter(filter.trim());
-        this.selectedMachine = selectedMachine.getItemStackForNEI();
+        if (selectedMachine != null) this.selectedMachine = selectedMachine.getItemStackForNEI();
     }
 
     @Override
