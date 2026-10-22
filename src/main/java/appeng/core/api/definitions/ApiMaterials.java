@@ -74,6 +74,7 @@ public final class ApiMaterials implements IMaterials {
     private final IItemDefinition cardInverter;
     private final IItemDefinition cardCrafting;
     private final IItemDefinition cardOreFilter;
+    private final IItemDefinition cardRecipeFilter;
     private final IItemDefinition cardAdvancedBlocking;
     private final IItemDefinition cardLockCrafting;
     private final IItemDefinition cardFakeCrafting;
@@ -180,6 +181,8 @@ public final class ApiMaterials implements IMaterials {
         this.cardInverter = new DamagedItemDefinition(itemMultiMaterial.createMaterial(MaterialType.CardInverter));
         this.cardCrafting = new DamagedItemDefinition(itemMultiMaterial.createMaterial(MaterialType.CardCrafting));
         this.cardOreFilter = new DamagedItemDefinition(itemMultiMaterial.createMaterial(MaterialType.CardOreFilter));
+        this.cardRecipeFilter = new DamagedItemDefinition(
+                itemMultiMaterial.createMaterial(MaterialType.CardRecipeFilter));
         this.cardAdvancedBlocking = new DamagedItemDefinition(
                 itemMultiMaterial.createMaterial(MaterialType.CardAdvancedBlocking));
         this.cardLockCrafting = new DamagedItemDefinition(
@@ -414,6 +417,11 @@ public final class ApiMaterials implements IMaterials {
     @Override
     public IItemDefinition cardOreFilter() {
         return this.cardOreFilter;
+    }
+
+    @Override
+    public IItemDefinition cardRecipeFilter() {
+        return this.cardRecipeFilter;
     }
 
     @Override

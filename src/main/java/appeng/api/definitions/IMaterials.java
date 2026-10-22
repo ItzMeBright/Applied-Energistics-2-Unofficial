@@ -144,6 +144,8 @@ public interface IMaterials {
 
     IItemDefinition cardOreFilter();
 
+    IItemDefinition cardRecipeFilter();
+
     IItemDefinition cardAdvancedBlocking();
 
     IItemDefinition cardLockCrafting();
