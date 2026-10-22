@@ -174,6 +174,17 @@ public class GuiStorageBus extends GuiUpgradeable {
     @Override
     public void drawBG(int offsetX, int offsetY, int mouseX, int mouseY) {
         super.drawBG(offsetX, offsetY, mouseX, mouseY);
+        final boolean isRecipeFilter = this.containerStorageBus.getUpgradeable().getInstalledUpgrades(Upgrades.RECIPE_FILTER)
+                > 0;
+        if (isRecipeFilter) {
+            // Gray out all but the first slot
+            final int SLOT_WIDTH = 18;
+            this.drawTexturedModalRect(offsetX + 7 + SLOT_WIDTH, offsetY + 28, 7, 46, 162 - SLOT_WIDTH, 18);
+            for (int i = 1; i < 7; i++) {
+                this.drawTexturedModalRect(offsetX + 7, offsetY + 28 + (18 * i), 7, 46, 162, 18);
+            }
+            return;
+        }
 
         final boolean isOreDict = this.containerStorageBus.getUpgradeable().getInstalledUpgrades(Upgrades.ORE_FILTER)
                 > 0;
@@ -247,6 +258,15 @@ public class GuiStorageBus extends GuiUpgradeable {
     }
 
     protected void updateSlotVisibility() {
+        final boolean isRecipeFilter = this.containerStorageBus.getUpgradeable().getInstalledUpgrades(Upgrades.RECIPE_FILTER)
+                > 0;
+        if (isRecipeFilter) {
+            // Exactly 1 slot for the GT machine to filter recipes by
+            for (VirtualMEPhantomSlot slot : this.configSlots) {
+                slot.setHidden(slot.getSlotIndex() >= 1);
+            }
+            return;
+        }
         final boolean isOreDict = this.containerStorageBus.getUpgradeable().getInstalledUpgrades(Upgrades.ORE_FILTER)
                 > 0;
         final int capacity = isOreDict ? -2
