@@ -23,6 +23,7 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import appeng.util.prioitylist.RecipeFilterList;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -688,8 +689,20 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
                     }
 
                     final boolean hasOreFilter = this.getInstalledUpgrades(Upgrades.ORE_FILTER) > 0;
+                    final boolean hasRecipeFilter = this.getInstalledUpgrades(Upgrades.RECIPE_FILTER) > 0;
 
-                    if (!hasOreFilter) {
+                     if (hasRecipeFilter) {
+                        IAEStack<?> selectedMachine = this.config.getAEStackInSlot(0);
+                        if (selectedMachine != null) {
+                            RecipeFilterList partitionList = new RecipeFilterList(selectedMachine);
+                            this.handler.setPartitionList(partitionList);
+                            this.handler.setExtractPartitionList(partitionList);
+                        }
+                    } else if (hasOreFilter) {
+                        OreFilteredList partitionList = new OreFilteredList(oreFilterString);
+                        this.handler.setPartitionList(partitionList);
+                        this.handler.setExtractPartitionList(partitionList);
+                    } else {
                         final IItemList priorityList = getItemList();
 
                         final int slotsToUse = 18 + this.getInstalledUpgrades(Upgrades.CAPACITY) * 9;
@@ -717,13 +730,9 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
                             this.handler.setPartitionList(partitionList);
                             this.handler.setExtractPartitionList(partitionList);
                         }
-                    } else {
-                        OreFilteredList partitionList = new OreFilteredList(oreFilterString);
-                        this.handler.setPartitionList(partitionList);
-                        this.handler.setExtractPartitionList(partitionList);
                     }
 
-                    if (inv instanceof IMEMonitor<?>m) {
+                    if (inv instanceof IMEMonitor<?> m) {
                         m.addListener(this, this.handler);
                     }
                 }
