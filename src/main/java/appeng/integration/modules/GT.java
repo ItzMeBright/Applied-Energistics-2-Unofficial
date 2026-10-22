@@ -22,8 +22,6 @@ import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.ColoredBlockContainer;
 import gregtech.common.blocks.ItemMachines;
 
-import java.util.Collection;
-
 public class GT implements IIntegrationModule, IGT {
 
     @Reflected
