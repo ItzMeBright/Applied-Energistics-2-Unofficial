@@ -5,28 +5,27 @@ import appeng.api.storage.data.IAEStack;
 import appeng.integration.IntegrationRegistry;
 import appeng.integration.IntegrationType;
 import appeng.integration.abstraction.IGT;
-import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
-import gregtech.api.recipe.RecipeMap;
+import net.minecraft.item.ItemStack;
 
 public class RecipeFilterList implements IPartitionList<IAEItemStack> {
 
-    private RecipeMap<?> recipeMap = null;
+    private final IGT gt = IntegrationRegistry.INSTANCE.getInstanceIfEnabled(IntegrationType.GT);
+    private final ItemStack selectedMachine;
 
     public RecipeFilterList(IAEStack<?> selectedMachine) {
-        IGT gt = IntegrationRegistry.INSTANCE.getInstanceIfEnabled(IntegrationType.GT);
-        if (gt == null || selectedMachine == null) return;
-        IMetaTileEntity metaTileEntity = gt.asGTTileEntity(selectedMachine.getItemStackForNEI());
-        recipeMap = gt.getRecipeMap(metaTileEntity);
+        this.selectedMachine = selectedMachine.getItemStackForNEI();
     }
 
     @Override
     public boolean isListed(IAEItemStack input) {
-        return recipeMap.containsInput(input.getItemStack());
+        if (gt == null || selectedMachine == null) return false;
+        return gt.isMachineInput(selectedMachine, input.getItemStack());
     }
 
     @Override
     public boolean isEmpty() {
-        return recipeMap == null;
+        if (gt == null || selectedMachine == null) return false;
+        return gt.isRecipeMapEmpty(selectedMachine);
     }
 
     @Override

@@ -54,16 +54,23 @@ public class GT implements IIntegrationModule, IGT {
     }
 
     @Override
-    public IMetaTileEntity asGTTileEntity(ItemStack itemStack) {
-        return ItemMachines.getMetaTileEntity(itemStack);
+    public boolean isRecipeMapEmpty(ItemStack machine) {
+        IMetaTileEntity metaTileEntity = ItemMachines.getMetaTileEntity(machine);
+        if (metaTileEntity == null) return false;
+        if (!(metaTileEntity instanceof RecipeMapWorkable recipeMapWorkable)) return false;
+        return recipeMapWorkable.getRecipeMap().getAllRecipes().isEmpty();
     }
 
     @Override
-    public RecipeMap<?> getRecipeMap(IMetaTileEntity metaTileEntity) {
-        if (metaTileEntity instanceof RecipeMapWorkable recipeMapWorkable) {
-            return recipeMapWorkable.getRecipeMap();
-        }
-        return null;
+    public boolean isMachineInput(ItemStack machine, ItemStack input) {
+        IMetaTileEntity metaTileEntity = ItemMachines.getMetaTileEntity(machine);
+        if (metaTileEntity == null) return false;
+        if (!(metaTileEntity instanceof RecipeMapWorkable recipeMapWorkable)) return false;
+
+        RecipeMap<?> recipeMap = recipeMapWorkable.getRecipeMap();
+        if (recipeMap == null) return false;
+
+        return recipeMap.containsInput(input);
     }
 
     @Override
