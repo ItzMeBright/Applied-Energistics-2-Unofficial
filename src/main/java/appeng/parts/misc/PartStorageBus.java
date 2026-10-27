@@ -696,7 +696,9 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
                         IAEStack<?> selectedMachine = this.config.getAEStackInSlot(0);
                         RecipeFilterList recipeFilterList = new RecipeFilterList(selectedMachine);
                         OreFilteredList oreFilteredList = new OreFilteredList(oreFilterString);
-                        IntersectPriorityList partitionList = new IntersectPriorityList(recipeFilterList, oreFilteredList);
+                        IntersectPriorityList partitionList = new IntersectPriorityList(
+                                recipeFilterList,
+                                oreFilteredList);
                         this.handler.setPartitionList(partitionList);
                         this.handler.setExtractPartitionList(partitionList);
                     } else if (hasRecipeFilter) {
