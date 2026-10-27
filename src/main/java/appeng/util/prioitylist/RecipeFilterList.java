@@ -11,10 +11,10 @@ import appeng.integration.abstraction.IGT;
 public class RecipeFilterList implements IPartitionList<IAEItemStack> {
 
     private final IGT gt = IntegrationRegistry.INSTANCE.getInstanceIfEnabled(IntegrationType.GT);
-    private final ItemStack selectedMachine;
+    private ItemStack selectedMachine = null;
 
     public RecipeFilterList(IAEStack<?> selectedMachine) {
-        this.selectedMachine = selectedMachine.getItemStackForNEI();
+        if (selectedMachine != null) this.selectedMachine = selectedMachine.getItemStackForNEI();
     }
 
     @Override
