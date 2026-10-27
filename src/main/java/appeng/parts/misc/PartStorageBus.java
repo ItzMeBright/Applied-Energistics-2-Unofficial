@@ -91,6 +91,7 @@ import appeng.transformer.annotations.Integration.Method;
 import appeng.util.IterationCounter;
 import appeng.util.Platform;
 import appeng.util.prioitylist.FuzzyPriorityList;
+import appeng.util.prioitylist.IntersectPriorityList;
 import appeng.util.prioitylist.OreFilteredList;
 import appeng.util.prioitylist.PrecisePriorityList;
 import appeng.util.prioitylist.RecipeFilterList;
@@ -691,7 +692,14 @@ public class PartStorageBus extends PartUpgradeable implements IStorageBus {
                     final boolean hasOreFilter = this.getInstalledUpgrades(Upgrades.ORE_FILTER) > 0;
                     final boolean hasRecipeFilter = this.getInstalledUpgrades(Upgrades.RECIPE_FILTER) > 0;
 
-                    if (hasRecipeFilter) {
+                    if (hasOreFilter && hasRecipeFilter) {
+                        IAEStack<?> selectedMachine = this.config.getAEStackInSlot(0);
+                        RecipeFilterList recipeFilterList = new RecipeFilterList(selectedMachine);
+                        OreFilteredList oreFilteredList = new OreFilteredList(oreFilterString);
+                        IntersectPriorityList partitionList = new IntersectPriorityList(recipeFilterList, oreFilteredList);
+                        this.handler.setPartitionList(partitionList);
+                        this.handler.setExtractPartitionList(partitionList);
+                    } else if (hasRecipeFilter) {
                         IAEStack<?> selectedMachine = this.config.getAEStackInSlot(0);
                         RecipeFilterList partitionList = new RecipeFilterList(selectedMachine);
                         this.handler.setPartitionList(partitionList);
